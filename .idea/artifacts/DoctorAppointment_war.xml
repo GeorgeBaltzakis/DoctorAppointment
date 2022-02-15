@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="DoctorAppointment:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>DoctorAppointment</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="DoctorAppointment-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="DoctorAppointment:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../mysql-connector-java-8.0.25.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
