@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ page import = "MainClasses.Patient" %>
+<%@ page import = "com.example.doctorappointment.MainClasses.Patient" %>
   
   	<%
   	Patient patient = (Patient)request.getAttribute("patient");
