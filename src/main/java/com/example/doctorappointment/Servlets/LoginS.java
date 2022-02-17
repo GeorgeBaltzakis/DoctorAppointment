@@ -73,7 +73,7 @@ public class LoginS extends HttpServlet {
 
 						// Go to 'patientMain'
 						HttpSession session = request.getSession();
-						session.setAttribute("patient", patient);
+						session.setAttribute("patient", patient.getName());
 						request.getRequestDispatcher("Views/Main/patientMain.jsp").forward(request, response);
 
 					} else {
@@ -108,7 +108,8 @@ public class LoginS extends HttpServlet {
 					if (Functions.encodeSha256(salt + password).equals(hashedpassword)) {
 						System.out.println("Doctor: " + doctor.getEmail() + " " + doctor.getHashedPassword() + " " + doctor.getSalt() + " " + doctor.getName() + " " + doctor.getSurname() + " " + doctor.getAdminUserId() + " " + doctor.getAMKA() + " " + doctor.getSpecialty());
 						// Go to 'patientLogin'
-						request.setAttribute("doctor", doctor);
+						HttpSession session = request.getSession();
+						session.setAttribute("doctor", doctor);
 						request.getRequestDispatcher("Views/Main/doctorMain.jsp").forward(request, response);
 
 					} else {
@@ -141,7 +142,8 @@ public class LoginS extends HttpServlet {
 					if (Functions.encodeSha256(salt + password).equals(hashedpassword)) {
 						System.out.println("Admin: " + admin.getEmail() + " " + admin.getHashedPassword() + " " + admin.getSalt() + " " + admin.getUserid());
 						// Go to 'adminMain'
-						request.setAttribute("admin", admin);
+						HttpSession session = request.getSession();
+						session.setAttribute("admin", admin);
 						request.getRequestDispatcher("Views/Main/adminMain.jsp").forward(request, response);
 
 					} else {

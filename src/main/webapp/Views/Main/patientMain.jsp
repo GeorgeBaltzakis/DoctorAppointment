@@ -13,15 +13,12 @@ pageEncoding="ISO-8859-1"%>
 
 //    session = request.getSession();
 
-    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-    response.setHeader("Pragma", "no-cache");
-    response.setDateHeader("Expires", 0);
 
     if(session.getAttribute("patient") == null){
         response.sendRedirect("index.jsp");
     }else {
-        patient = (Patient)session.getAttribute("patient");
-        name = patient.getName();
+        name = session.getAttribute("patient").toString();
+        //name = patient.getName();
 
         response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
         response.setHeader("Pragma", "no-cache");
