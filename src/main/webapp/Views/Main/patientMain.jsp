@@ -1,5 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+<%@ page import = "com.example.doctorappointment.MainClasses.Patient" %>
+
+<%
+//    response.setHeader("Cache-Control", "no-cache");
+//    response.setHeader("Cache-Control", "no-store");
+//    response.setHeader("Pragma", "no-cache");
+//    response.setDateHeader("Expires", 0);
+
+    String name = null;
+    Patient patient = null;
+
+//    session = request.getSession();
+
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+
+    if(session.getAttribute("patient") == null){
+        response.sendRedirect("index.jsp");
+    }else {
+        patient = (Patient)session.getAttribute("patient");
+        name = patient.getName();
+
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+
+//        response.setHeader("Cache-Control", "no-cache");
+//        response.setHeader("Cache-Control", "private");
+//        response.setDateHeader("Expires", -1);
+//        response.setHeader("Pragma","no-cache");
+//        response.setDateHeader("Expires", -1);
+//        response.setHeader("Cache-Control", "no-store");
+//        response.setHeader("Pragma", "no-cache");
+//        response.setDateHeader("Expires", 0);
+//        session.setAttribute("patient", null);
+//        session.removeAttribute("patient");
+//        session.invalidate();
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,13 +52,7 @@ pageEncoding="ISO-8859-1"%>
     </style>
   </head>
   <body>
-  	<%@ page import = "com.example.doctorappointment.MainClasses.Patient" %>
-  
-  	<%
-  	Patient patient = (Patient)request.getAttribute("patient");
-  	String name = patient.getName();
-  	request.setAttribute("patient", patient);
-  	%>
+
     <h1>Welcome, <%out.print(name); %></h1>
     <br /><br />
 
@@ -51,6 +85,14 @@ pageEncoding="ISO-8859-1"%>
                 <br />
                 <button class="button" style="background-color: rgb(41, 119, 26)">Booking</button>
               </li>
+                <br /><br /><br />
+            <li>
+                <em style="color: rgb(122,106,189)">Logout</em>. <br />
+                <br />
+                <form action="${pageContext.request.contextPath}/logout" method="get">
+                <input type="submit" class="button" style="background-color: rgb(203,0,0)" value="Logout">
+                </form>
+            </li>
             </ol>
           </td>
         </tr>

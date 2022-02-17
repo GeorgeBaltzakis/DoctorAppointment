@@ -8,10 +8,10 @@ pageEncoding="ISO-8859-1"%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Doctor Appointment</title>
     <style>
-      <%@include file="../WEB-INF/css/style.css"%>
+      <%@include file="WEB-INF/css/style.css"%>
     </style>
-      <script src="https://smtpjs.com/v3/smtp.js"></script>
-      <script src="index.js"></script>
+<%--      <script src="https://smtpjs.com/v3/smtp.js"></script>--%>
+<%--      <script src="index.js"></script>--%>
   </head>
   <body>
     <h1>Doctor Appointment</h1>
@@ -104,7 +104,7 @@ pageEncoding="ISO-8859-1"%>
           <tr>
             <td align="center">
               <input
-                      onclick="checkVerificationCode()"
+<%--                      onclick="checkVerificationCode()"--%>
                 type="submit"
                 value="Log-in"
                 name="Log-in"

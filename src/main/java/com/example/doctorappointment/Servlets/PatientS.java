@@ -9,31 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.doctorappointment.MainClasses.Patient;
 
-/**
- * Servlet implementation class PatientS
- */
 @WebServlet("/patientMain")
 public class PatientS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        Patient patient;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public PatientS() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		patient = (Patient)request.getAttribute("patient");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("history") != null) {
             request.setAttribute("patient", patient);

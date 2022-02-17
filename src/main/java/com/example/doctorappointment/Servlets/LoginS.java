@@ -21,11 +21,10 @@ package com.example.doctorappointment.Servlets;
 
 import java.io.IOException;
 
+import javax.jms.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
 import com.example.doctorappointment.DAO.*;
 
@@ -36,23 +35,19 @@ public class LoginS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public Patient patient;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		patient = new Patient();
-		Admin admin = new Admin();
+		response.setContentType("text/html");
+
+		patient = null;
+		Admin admin = null;
 		Doctor doctor = null;
+
 		// Get the form's email and password
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");		
 		String category = request.getParameter("category");
 		String vCode = request.getParameter("vcode");
-		System.out.println(email + " " + password +" "+category);
-		
-		
+
 		// PATIENT
 
 		Patient patient = null;
@@ -75,18 +70,20 @@ public class LoginS extends HttpServlet {
 					if (Functions.encodeSha256(salt + password).equals(hashedpassword)) {
 						System.out.println("Patient Login Success");
 						System.out.println("Patient: " + patient.getEmail() + " " + patient.getHashedPassword() + " " + patient.getSalt() + " " + patient.getName() + " " + patient.getSurname() + " " + patient.getAMKA());
+
 						// Go to 'patientMain'
-						request.setAttribute("patient", patient);
+						HttpSession session = request.getSession();
+						session.setAttribute("patient", patient);
 						request.getRequestDispatcher("Views/Main/patientMain.jsp").forward(request, response);
 
 					} else {
 						// Go to Login page
 						System.out.println("Wrong Password");
-						response.sendRedirect("Views/index.jsp");
+						response.sendRedirect("index.jsp");
 					}
 				} else {
 					// Go to Login page
-					response.sendRedirect("Views/index.jsp");
+					response.sendRedirect("index.jsp");
 				}
 
 
@@ -116,11 +113,11 @@ public class LoginS extends HttpServlet {
 
 					} else {
 						// Go to Login page
-						response.sendRedirect("Views/index.jsp");
+						response.sendRedirect("index.jsp");
 					}
 				} else {
 					// Go to Login page
-					response.sendRedirect("Views/index.jsp");
+					response.sendRedirect("index.jsp");
 				}
 
 
@@ -149,11 +146,11 @@ public class LoginS extends HttpServlet {
 
 					} else {
 						// Go to Login page
-						response.sendRedirect("Views/index.jsp");
+						response.sendRedirect("index.jsp");
 					}
 				} else {
 					// Go to Login page
-					response.sendRedirect("Views/index.jsp");
+					response.sendRedirect("index.jsp");
 				}
 				break;
 		}
